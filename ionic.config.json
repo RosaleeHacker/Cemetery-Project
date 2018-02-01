@@ -1,0 +1,8 @@
+{
+  "name": "wot",
+  "app_id": "abb5afa0",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
