@@ -8,9 +8,14 @@ import { BlogPage } from '../pages/blog/blog';
 import { TimelinePage } from '../pages/timeline/timeline';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { DataEntryPage } from '../pages/data-entry/data-entry';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+import {AngularFireModule} from "angularfire2";
+import {AngularFireDatabaseModule} from 'angularfire2/database'
+import {FIREBASE_CREDENTIALS} from './firebase.credentials';
 
 @NgModule({
   declarations: [
@@ -18,11 +23,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     BlogPage,
     TimelinePage,
     HomePage,
-    TabsPage
+    TabsPage,
+    DataEntryPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -30,7 +38,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     BlogPage,
     TimelinePage,
     HomePage,
-    TabsPage
+    TabsPage,
+    DataEntryPage
   ],
   providers: [
     StatusBar,
