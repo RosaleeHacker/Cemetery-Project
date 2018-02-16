@@ -9,6 +9,8 @@ import { TimelinePage } from '../pages/timeline/timeline';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { DataEntryPage } from '../pages/data-entry/data-entry';
+import { VegetationPage } from '../pages/vegetation/vegetation';
+import { AboutPage } from '../pages/about/about';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,13 +26,15 @@ import {FIREBASE_CREDENTIALS} from './firebase.credentials';
     TimelinePage,
     HomePage,
     TabsPage,
-    DataEntryPage
+    DataEntryPage,
+    VegetationPage,
+    AboutPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,7 +43,9 @@ import {FIREBASE_CREDENTIALS} from './firebase.credentials';
     TimelinePage,
     HomePage,
     TabsPage,
-    DataEntryPage
+    DataEntryPage,
+    VegetationPage,
+    AboutPage
   ],
   providers: [
     StatusBar,
@@ -47,5 +53,6 @@ import {FIREBASE_CREDENTIALS} from './firebase.credentials';
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
+  
 })
 export class AppModule {}
