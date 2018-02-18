@@ -15,20 +15,16 @@
 
 
 <ion-content padding>
+  <h1 class="title">Add New Vegetation</h1>
   <ion-item>
-    <ion-label floating>Person Name</ion-label>
-    <ion-input type="text" [(ngModel)]="person.name"></ion-input>
+    <ion-label floating>Vegetation Name</ion-label>
+    <ion-input type="text" [(ngModel)]="vegetation.name"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label floating>Person DOB</ion-label>
-    <ion-input type="text" [(ngModel)]="person.year"></ion-input>
+    <ion-label floating>Vegetation Description</ion-label>
+    <ion-textarea [(ngModel)]="vegetation.description"></ion-textarea>
   </ion-item>
 
-  <ion-item>
-    <ion-label floating>Person Description</ion-label>
-    <ion-textarea [(ngModel)]="person.description"></ion-textarea>
-  </ion-item>
-
-  <button ion-button block (click)="addPerson(person)">Add Person</button>
+  <button ion-button block (click)="addVegetation(vegetation)">Add Vegetation</button>
 </ion-content>

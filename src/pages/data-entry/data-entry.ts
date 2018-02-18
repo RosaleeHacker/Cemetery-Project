@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Person} from "../../models/person/person.interface";
-import {AngularFireDatabase} from 'angularfire2/database';
-import {FirebaseListObservable} from "angularfire2/database-deprecated";
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {Vegetation} from "../../models/vegetation/vegetation.interface";
+import {DataEntryService} from "../../services/data-entry/data-entry.service";
+import {ToastService} from "../../services/toast/toast.service";
 
 /**
  * Generated class for the DataEntryPage page.
@@ -17,19 +17,28 @@ import {FirebaseListObservable} from "angularfire2/database-deprecated";
 })
 export class DataEntryPage {
 
-  person = {} as Person;
+  vegetation = {} as Vegetation;
 
-  personRef$: FirebaseListObservable<Person[]>;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private dataEntryService: DataEntryService,
+              private toastService: ToastService) {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private database: AngularFireDatabase) {
-    this.personRef$ = this.database.list('person-list');
   }
 
-  addPerson(person: Person)
-  {
-    this.personRef$.push(this.person);
+  addVegetation(vegetation: Vegetation) {
+    try {
+      let name = vegetation.name;
+      this.dataEntryService.addVegetationData(vegetation).then(ref => {
 
-    this.person = {} as Person;
+        this.toastService.show(`${name} successfully saved!`);
+        console.log(ref.key);
+      })
+    }
+    catch (e) {
+      console.log(e);
+    }
+
+    this.vegetation.name = "";
+    this.vegetation.description = "";
   }
 
 }

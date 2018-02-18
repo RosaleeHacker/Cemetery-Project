@@ -18,6 +18,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {AngularFireModule} from "angularfire2";
 import {AngularFireDatabaseModule} from 'angularfire2/database'
 import {FIREBASE_CREDENTIALS} from './firebase.credentials';
+import {DataEntryService} from "../services/data-entry/data-entry.service";
+import {ToastService} from "../services/toast/toast.service";
 
 @NgModule({
   declarations: [
@@ -51,8 +53,10 @@ import {FIREBASE_CREDENTIALS} from './firebase.credentials';
     StatusBar,
     SplashScreen,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DataEntryService,
+    ToastService
   ]
-  
+
 })
 export class AppModule {}
