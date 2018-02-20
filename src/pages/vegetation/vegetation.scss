@@ -10,16 +10,16 @@ page-vegetation {
 }
 
 .thumbnail-text{
-    
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .readMore{
    float: left;
+   font-weight: bold;
 }
 
 .location{
     float: right;
+    font-weight: bold;
 }
