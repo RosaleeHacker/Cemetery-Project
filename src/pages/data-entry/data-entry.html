@@ -31,4 +31,45 @@
   </ion-item>
 
   <button ion-button block (click)="addVegetation(vegetation)">Add Vegetation</button>
+
+  <ion-item-divider></ion-item-divider>
+
+  <h1 class="title">Add New Tombstone</h1>
+  <ion-item>
+    <ion-label floating>Tombstone Name</ion-label>
+    <ion-input type="text" [(ngModel)]="tombstone.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Tombstone Description</ion-label>
+    <ion-textarea [(ngModel)]="tombstone.description"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Born</ion-label>
+    <ion-input type="date" [(ngModel)]="tombstone.born"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Died</ion-label>
+    <ion-input type="date" [(ngModel)]="tombstone.died"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>War Participated In</ion-label>
+    <ion-input type="text" [(ngModel)]="tombstone.warParticipated"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Latitude</ion-label>
+    <ion-input type="text" [(ngModel)]="tombstone.latitude"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Longitude</ion-label>
+    <ion-input type="text" [(ngModel)]="tombstone.longitude"></ion-input>
+  </ion-item>
+
+  <button ion-button block (click)="addTombstone(tombstone)">Add Tombstone</button>
+
 </ion-content>

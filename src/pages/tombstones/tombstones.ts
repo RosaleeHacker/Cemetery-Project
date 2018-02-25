@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Observable} from "rxjs/Observable";
+import {Tombstone} from "../../models/tombstone/tombstone.interface";
+import {DatabaseAccessService} from "../../services/data-entry/data-access.service";
 
 /**
  * Generated class for the TombstonesPage page.
@@ -15,7 +18,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TombstonesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  tombstoneList$: Observable<Tombstone[]>;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private tombstone: DatabaseAccessService) {
+    this.tombstoneList$= this.tombstone.getTombstoneData().snapshotChanges().map(
+      changes => {
+        return changes.map(c => ({
+          key: c.payload.key,
+          ...c.payload.val(),
+        }))
+      }
+    );
   }
 
   ionViewDidLoad() {
