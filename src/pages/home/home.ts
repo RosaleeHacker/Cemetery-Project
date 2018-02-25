@@ -16,18 +16,31 @@ export class HomePage {
  
   constructor(public navCtrl: NavController, public geolocation: Geolocation) {
   }
- 
-  ionViewDidLoad(){
-    this.initMap();
+  
+ ionViewDidLoad(){
+    this.loadMap();
   }
 	
-      initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 19,
-          center: new google.maps.LatLng(43.129417, -77.639181),
-          mapTypeId: 'roadmap'
-        });
-
+  loadMap() {
+    this.geolocation.getCurrentPosition().then((position) => {
+ 
+      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+ 
+      let mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: "satellite",
+        myLocationButton: true,
+        compass: true,
+        indoorPicker: true
+      }
+ 
+    this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+         },(success) => {
+    console.log(success);
+    
+    });
+ 
        //first grave
       var contentString1 = '<div id="content">'+
       '<div id="siteNotice">'+
@@ -45,12 +58,12 @@ export class HomePage {
 
   		var marker1 = new google.maps.Marker({
           position: {lat: 43.129313, lng: -77.639573},
-          map: map,
+          map: this.map,
           title: 'Hello World!',
         });
 
         marker1.addListener('click', function() {
-    		infowindow1.open(map, marker1);
+    		infowindow1.open(this.map, marker1);
   		});
 
   	  //second grave
@@ -70,12 +83,12 @@ export class HomePage {
 
   		var marker2 = new google.maps.Marker({
           position: {lat: 43.129569, lng: -77.639436},
-          map: map,
+          map: this.map,
           title: 'Hello World!'
         });
 
         marker2.addListener('click', function() {
-    		infowindow2.open(map, marker2);
+    		infowindow2.open(this.map, marker2);
   		});
 
   		//third grave
@@ -95,12 +108,12 @@ export class HomePage {
 
   		var marker3 = new google.maps.Marker({
           position: {lat: 43.129545, lng: -77.639168},
-          map: map,
+          map: this.map,
           title: 'Hello World!'
         });
 
         marker3.addListener('click', function() {
-    		infowindow3.open(map, marker3);
+    		infowindow3.open(this.map, marker3);
   		});
 
   		//forth grave
@@ -120,12 +133,12 @@ export class HomePage {
 
   		var marker4 = new google.maps.Marker({
           position: {lat: 43.129388, lng: -77.638878},
-          map: map,
+          map: this.map,
           title: 'Hello World!'
         });
 
         marker4.addListener('click', function() {
-    		infowindow4.open(map, marker4);
+    		infowindow4.open(this.map, marker4);
   		});
 
       //1st vegetation
@@ -145,13 +158,13 @@ export class HomePage {
 
       var marker5 = new google.maps.Marker({
           position: {lat: 43.129674, lng: -77.639399},
-          map: map,
+          map: this.map,
           title: 'Hello World!',
           icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
         });
 
         marker5.addListener('click', function() {
-        infowindow5.open(map, marker5);
+        infowindow5.open(this.map, marker5);
       });
 
       //2nd vegetation
@@ -171,13 +184,15 @@ export class HomePage {
 
       var marker6 = new google.maps.Marker({
           position: {lat: 43.129520, lng: -77.638729},
-          map: map,
+          map: this.map,
           title: 'Hello World!',
           icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
         });
 
         marker6.addListener('click', function() {
-        infowindow6.open(map, marker6);
+        infowindow6.open(this.map, marker6);
       });
-      }
+      
+}
+
 }
