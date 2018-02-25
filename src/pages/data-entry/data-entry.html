@@ -26,5 +26,9 @@
     <ion-textarea [(ngModel)]="vegetation.description"></ion-textarea>
   </ion-item>
 
+  <ion-item>
+   <form-upload></form-upload>
+  </ion-item>
+
   <button ion-button block (click)="addVegetation(vegetation)">Add Vegetation</button>
 </ion-content>

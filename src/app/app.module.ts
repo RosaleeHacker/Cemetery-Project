@@ -20,8 +20,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {AngularFireModule} from "angularfire2";
 import {AngularFireDatabaseModule} from 'angularfire2/database'
 import {FIREBASE_CREDENTIALS} from './firebase.credentials';
-import {DataEntryService} from "../services/data-entry/data-entry.service";
+import {DatabaseAccessService} from "../services/data-entry/data-access.service";
 import {ToastService} from "../services/toast/toast.service";
+import {Camera} from "@ionic-native/camera";
+import {FormUploadComponent} from "../components/form-upload/form-upload";
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import {ToastService} from "../services/toast/toast.service";
     VegetationPage,
     AboutPage,
     TombstonesPage,
-    HistoryTrailsPage
+    HistoryTrailsPage,
+    FormUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -60,8 +63,9 @@ import {ToastService} from "../services/toast/toast.service";
     SplashScreen,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DataEntryService,
-    ToastService
+    DatabaseAccessService,
+    ToastService,
+    Camera,
 ]
 
 })

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {Vegetation} from "../../models/vegetation/vegetation.interface";
-import {DataEntryService} from "../../services/data-entry/data-entry.service";
+import {DatabaseAccessService} from "../../services/data-entry/data-access.service";
 import {ToastService} from "../../services/toast/toast.service";
 
 /**
@@ -19,7 +19,7 @@ export class DataEntryPage {
 
   vegetation = {} as Vegetation;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private dataEntryService: DataEntryService,
+  constructor(public navCtrl: NavController, public navParams: NavParams, private dataEntryService: DatabaseAccessService,
               private toastService: ToastService) {
 
   }

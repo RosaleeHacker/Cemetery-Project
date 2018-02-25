@@ -1,8 +1,8 @@
 
-<!-- 
+<!--
     Things to do to complete the page:
     - Add in the functionality for trunking the text (Read me)
-    - Add in functionality for the locate me 
+    - Add in functionality for the locate me
     - Recode it and move all text to the database
     - Revamp the css
 -->
@@ -16,54 +16,17 @@
 </ion-header>
 
 <ion-content>
-    
+
   <ion-list text-wrap>
-    <ion-item>
-        <ion-list-header>Black Raspberry</ion-list-header>
-       <img class="thumbnail-images" src = "../assets/imgs/Black_Raspberry.jpeg">
-        <p class="thumbnail-text">
-             Rubus occidentalis is a deciduous shrub growing to 2–3 m (7–10 feet) tall, with prickly shoots. The leaves are pinnate, with five leaflets on leaves, strong-growing stems in their first year, and three leaflets on leaves on flowering branchlets. The flowers are distinct in having long, slender sepals 6–8 mm long, more than twice as long as the petals. The round-shaped fruit is a 12–15 mm diameter aggregation of drupelets; it is edible, and has a high content of anthocyanins and ellagic acid.
-            
-             Black raspberries are high in anthocyanins. This has led to their being very useful as natural dyes. Preliminary studies to evaluate their benefit for cancer treatment in mammalian test systems are ongoing and a small-scale clinical trial has begun on patients with Barrett's esophagus. They taste great, besides being good for you!  Try with cereal.
-        </p>
-        <p ><span class="readMore">Read More</span> <span class="location">Location</span></p>
-    </ion-item>
-      
-    <ion-item>
-       <ion-list-header>Black Walnut Trees</ion-list-header>
-       <img class="thumbnail-images" src = "../assets/imgs/Black_Walnut.jpeg">
-        <p class="thumbnail-text">
-            Juglans nigra, the eastern black walnut, is a species of deciduous tree in the walnut family, Juglandaceae, native to eastern North America.Black walnut is an important tree commercially, as the wood is a deep brown color and easily worked. The fruits, walnuts, are cultivated for their distinctive and desirable taste. Often, trees are grown for both lumber and walnuts simultaneously and many cultivars have been developed for improved quality nuts or wood. Black walnut is currently under pressure from the thousand cankers disease that is causing decline of walnuts in some areas. Black walnut is also allelopathic, which means that it releases chemicals from roots and other tissues that harm other organisms and give the tree a competitive advantage; this is often undesirable as it can harm garden plants and grasses.  Only certain desirable garden plants will grow anywhere near black walnuts.  
-            
-            Black walnuts may be harvested when fully formed (about the size of a large golfball) and they fall to the ground in Fall.  They have to be dried so husks may be removed, and then nuts have dried.  Cracking them is especially difficult, and meat is small, making this an arduous task.  
-        </p>
-        <p ><span class="readMore">Read More</span> <span class="location">Location</span></p>
-    </ion-item>
-    <ion-item>
-        <ion-list-header>Blood Root</ion-list-header>
-        <img class="thumbnail-images" src = "../assets/imgs/Bloodroot.jpeg">
-          <p class="thumbnail-text">
-            Bloodroot plants, Sanguinaria canadensis, get their name from the dark red sap found in the stems and roots, which resembles blood.  Large colonies are found in Rapids Cemetery.  The colored juice from the stems can be used to make red, pink and orange dyes.  The single bloodroot leaf and flower each rise on a separate stem, and at first the leaf completely enwraps the flower bud.  The clear, white many-petaled blossom may open before the leaf has completely unwrapped, rising slightly above the leaf to a height of 6-10 inches.  Leaves, which are large, round and deeply cleft, eventually reach a height of 12-14 inches.  The red juice from the underground stem was used by Native Americans as a dye for baskets, clothing, and war paint, as well as for insect repellent.  The generic name, from the Latin sanguinarius, means bleeding.
-            Bloodroot is used in herbal medicine in very small doses, mainly for bronchial problems and severe throat infections.  The root is used in many pharmaceuticals, mixed with other compounds to treat heart problems, dental applications (to inhibit placque,) and to treat migraines.  Paste is used externally for skin diseases, warts and tumors.  All parts of the plant are poisonous.  Studies are currently underway using bloodroot as a treatment for cancers of the skin, though bloodroot is becoming hard to find and is reaching the point of extinction in some areas of the U.S.   (This plant should not be transplanted.)
-          </p>
-          <p ><span class="readMore">Read More</span> <span class="location">Location</span></p>
 
+    <ion-item *ngFor="let vegetation of vegetationList$ | async">
+      <ion-list-header>{{vegetation.name}}</ion-list-header>
+      <img class="thumbnail-images" src = {{vegetation.url}}>
+      <p class="thumbnail-text">
+        {{vegetation.description}}
+      </p>
     </ion-item>
-    <ion-item>
-        <ion-list-header>Daylilies</ion-list-header>
-        <img class="thumbnail-images" src = "../assets/imgs/Daylilies.jpeg">
-          <p class="thumbnail-text">
-            This is a common plant found along roadsides, forests, in the wild.  They have come into peoples' gardens as so easy to grow.  Fans grow many varieties and even breed them.  Each bloom lasts only a day.
-            Most sources say to saute the unopened flower buds with a little butter or oil, just lily buds, butter and salt.
-            The the little tubers look exactly like fingerling potatoes, while others are pure white, like the inside of jicama. Same treatment to the tubers: Butter, salt, saute. Think really young fingerling potatoes, only with a sweetness to them. 
-
-          </p>
-          <p ><span class="readMore">Read More</span> <span class="location">Location</span></p>
-
-    </ion-item>    
-      
-            
 </ion-list>
-    
-    
+
+
 </ion-content>
