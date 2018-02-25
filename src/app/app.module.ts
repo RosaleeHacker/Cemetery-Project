@@ -11,6 +11,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { DataEntryPage } from '../pages/data-entry/data-entry';
 import { VegetationPage } from '../pages/vegetation/vegetation';
 import { AboutPage } from '../pages/about/about';
+import { HistoryTrailsPage } from '../pages/history-trails/history-trails';
+import { TombstonesPage } from '../pages/tombstones/tombstones';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -30,7 +32,9 @@ import {ToastService} from "../services/toast/toast.service";
     TabsPage,
     DataEntryPage,
     VegetationPage,
-    AboutPage
+    AboutPage,
+    TombstonesPage,
+    HistoryTrailsPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,9 @@ import {ToastService} from "../services/toast/toast.service";
     TabsPage,
     DataEntryPage,
     VegetationPage,
-    AboutPage
+    AboutPage,
+    TombstonesPage,
+    HistoryTrailsPage
   ],
   providers: [
     StatusBar,
@@ -56,7 +62,7 @@ import {ToastService} from "../services/toast/toast.service";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataEntryService,
     ToastService
-  ]
+]
 
 })
 export class AppModule {}
