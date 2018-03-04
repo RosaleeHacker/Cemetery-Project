@@ -12,7 +12,6 @@ var map;
 export class HomePage {
  
   @ViewChild('map') mapElement: ElementRef;
-  map: any;
  
   constructor(public navCtrl: NavController, public geolocation: Geolocation) {
   }
