@@ -12,38 +12,23 @@ var map;
 export class HomePage {
  
   @ViewChild('map') mapElement: ElementRef;
+  map: any;
  
   constructor(public navCtrl: NavController, public geolocation: Geolocation) {
   }
-  
- ionViewDidLoad(){
- this.loadMap();
+ 
+  ionViewDidLoad(){
+    this.initMap();
   }
 	
-  loadMap() {
-  
-      let options = {timeout:10000, enableletHighAccuracy: true};
-      this.geolocation.getCurrentPosition().then((position) => {
- 
-      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-      let mapOptions = {
-        center: latLng,
-        zoom: 15,
-        mapTypeId: google.maps.MapTypeId.hybrid
-      }
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 19,
+          center: new google.maps.LatLng(43.129417, -77.639181),
+          mapTypeId: 'roadmap'
+        });
 
-      let marker = new google.maps.Marker({
-        map: this.map,
-        animation: google.maps.Animation.DROP,
-        position: this.map.getCenter()
-      });
-     
-     //Necessary for navigation
-      let directionsService = new google.maps.DirectionsService;
-      let directionsDisplay = new google.maps.DirectionsRenderer;
-            
-     //first grave
+       //first grave
       var contentString1 = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
@@ -57,32 +42,18 @@ export class HomePage {
       var infowindow1 = new google.maps.InfoWindow({
     	content: contentString1
   		});
-      
-      let marker1 = new google.maps.Marker({
-          map: this.map,
+
+  		var marker1 = new google.maps.Marker({
           position: {lat: 43.129313, lng: -77.639573},
+          map: map,
+          title: 'Hello World!',
         });
-      
-      marker1.addListener('click', function() {
-    		infowindow1.open(this.map, marker1);
-            directionsDisplay.setMap(this.map);
- 
-            directionsService.route({
-                origin: latLng,
-                destination: {lat: 43.129313, lng: -77.639573},
-                travelMode: google.maps.TravelMode['DRIVING']}, (res, status) => {
- 
-            if(status == google.maps.DirectionsStatus.OK){
-                directionsDisplay.setDirections(res);
-            } else {
-                console.warn(status);
-            }
- 
-        }); 
-        
+
+        marker1.addListener('click', function() {
+    		infowindow1.open(map, marker1);
   		});
-        
-       //second grave
+
+  	  //second grave
   	  var contentString2 = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
@@ -97,30 +68,17 @@ export class HomePage {
     	content: contentString2
   		});
 
-      let marker2 = new google.maps.Marker({
-          map: this.map,
+  		var marker2 = new google.maps.Marker({
           position: {lat: 43.129569, lng: -77.639436},
+          map: map,
+          title: 'Hello World!'
         });
 
         marker2.addListener('click', function() {
-    		infowindow2.open(this.map, marker2);
-            directionsDisplay.setMap(this.map);
- 
-            directionsService.route({
-                origin: latLng,
-                destination: {lat: 43.129569, lng: -77.639436},
-                travelMode: google.maps.TravelMode['DRIVING']}, (res, status) => {
- 
-            if(status == google.maps.DirectionsStatus.OK){
-                directionsDisplay.setDirections(res);
-            } else {
-                console.warn(status);
-            }
- 
-        }); 
+    		infowindow2.open(map, marker2);
   		});
-        
-        //third grave
+
+  		//third grave
   	  var contentString3 = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
@@ -135,28 +93,14 @@ export class HomePage {
     	content: contentString3
   		});
 
-  		let marker3 = new google.maps.Marker({
+  		var marker3 = new google.maps.Marker({
           position: {lat: 43.129545, lng: -77.639168},
-          map: this.map,
+          map: map,
           title: 'Hello World!'
         });
 
         marker3.addListener('click', function() {
-    		infowindow3.open(this.map, marker3);
-            directionsDisplay.setMap(this.map);
- 
-            directionsService.route({
-                origin: latLng,
-                destination: {lat: 43.129545, lng: -77.639168},
-                travelMode: google.maps.TravelMode['DRIVING']}, (res, status) => {
- 
-            if(status == google.maps.DirectionsStatus.OK){
-                directionsDisplay.setDirections(res);
-            } else {
-                console.warn(status);
-            }
- 
-        }); 
+    		infowindow3.open(map, marker3);
   		});
 
   		//forth grave
@@ -174,28 +118,14 @@ export class HomePage {
     	content: contentString4
   		});
 
-  		let marker4 = new google.maps.Marker({
+  		var marker4 = new google.maps.Marker({
           position: {lat: 43.129388, lng: -77.638878},
-          map: this.map,
+          map: map,
           title: 'Hello World!'
         });
 
         marker4.addListener('click', function() {
-    		infowindow4.open(this.map, marker4);
-            directionsDisplay.setMap(this.map);
- 
-            directionsService.route({
-                origin: latLng,
-                destination: {lat: 43.129388, lng: -77.638878},
-                travelMode: google.maps.TravelMode['DRIVING']}, (res, status) => {
- 
-            if(status == google.maps.DirectionsStatus.OK){
-                directionsDisplay.setDirections(res);
-            } else {
-                console.warn(status);
-            }
- 
-        }); 
+    		infowindow4.open(map, marker4);
   		});
 
       //1st vegetation
@@ -213,30 +143,15 @@ export class HomePage {
       content: contentString5
       });
 
-      let marker5 = new google.maps.Marker({
+      var marker5 = new google.maps.Marker({
           position: {lat: 43.129674, lng: -77.639399},
-          map: this.map,
+          map: map,
           title: 'Hello World!',
           icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
         });
 
         marker5.addListener('click', function() {
-        infowindow5.open(this.map, marker5);
-        directionsDisplay.setMap(this.map);
- 
-            directionsService.route({
-                origin: latLng,
-                destination: {lat: 43.129674, lng: -77.639399},
-                travelMode: google.maps.TravelMode['DRIVING']}, (res, status) => {
- 
-            if(status == google.maps.DirectionsStatus.OK){
-                directionsDisplay.setDirections(res);
-            } else {
-                console.warn(status);
-            }
- 
-        }); 
-        
+        infowindow5.open(map, marker5);
       });
 
       //2nd vegetation
@@ -254,38 +169,15 @@ export class HomePage {
       content: contentString6
       });
 
-      let marker6 = new google.maps.Marker({
+      var marker6 = new google.maps.Marker({
           position: {lat: 43.129520, lng: -77.638729},
-          map: this.map,
+          map: map,
           title: 'Hello World!',
           icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
         });
 
         marker6.addListener('click', function() {
-        infowindow6.open(this.map, marker6);
-        directionsDisplay.setMap(this.map);
- 
-            directionsService.route({
-                origin: latLng,
-                destination: {lat: 43.129520, lng: -77.638729},
-                travelMode: google.maps.TravelMode['DRIVING']}, (res, status) => {
- 
-            if(status == google.maps.DirectionsStatus.OK){
-                directionsDisplay.setDirections(res);
-            } else {
-                console.warn(status);
-            }
- 
-        }); 
-        
+        infowindow6.open(map, marker6);
       });
-        
-
-    }, (err) => {
-       console.log(err);
-    });
-
-     
-    }
-
+      }
 }
