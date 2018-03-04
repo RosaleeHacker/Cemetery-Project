@@ -32,8 +32,7 @@ export class HomePage {
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.hybrid
       }
-      let element = this.mapElement.nativeElement;
-      this.map = new google.maps.Map(element, mapOptions);
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
       let marker = new google.maps.Marker({
         map: this.map,
