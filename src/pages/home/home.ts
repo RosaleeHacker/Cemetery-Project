@@ -1,9 +1,8 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
  
 declare var google;
-var map;
  
 @Component({
   selector: 'home-page',
@@ -11,10 +10,10 @@ var map;
 })
 export class HomePage {
  
-  @ViewChild('map') mapElement: ElementRef;
   map: any;
+
  
-  constructor(public navCtrl: NavController, public geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, public geolocation: Geolocation, private mapElement:ElementRef) {
   }
   
  ionViewDidLoad(){
@@ -29,8 +28,8 @@ export class HomePage {
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       let mapOptions = {
         center: latLng,
-        zoom: 16,
-        mapTypeId: google.maps.MapTypeId.hybrid
+        zoom: 17,
+        mapTypeId: 'satellite'
       }
       let element = this.mapElement.nativeElement;
       this.map = new google.maps.Map(element, mapOptions);
@@ -283,8 +282,8 @@ export class HomePage {
       });
         
 
-    }, (err) => {
-       console.log(err);
+    }, (success) => {
+       console.log(succcess);
     });
 
      
