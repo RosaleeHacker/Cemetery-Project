@@ -29,7 +29,7 @@ export class HomePage {
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       let mapOptions = {
         center: latLng,
-        zoom: 16,
+        zoom: 15,
         mapTypeId: google.maps.MapTypeId.hybrid
       }
       let element = this.mapElement.nativeElement;
