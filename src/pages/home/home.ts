@@ -13,8 +13,6 @@ export class HomePage {
  
   @ViewChild('map') mapElement: ElementRef;
   map: any;
-  @ViewChild('map') nativeElement: any;
-
  
   constructor(public navCtrl: NavController, public geolocation: Geolocation) {
   }
