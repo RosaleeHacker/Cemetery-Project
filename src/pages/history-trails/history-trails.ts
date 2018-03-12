@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NativeAudio } from '@ionic-native/native-audio';
+
 
 /**
  * Generated class for the HistoryTrailsPage page.
@@ -14,12 +16,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'history-trails.html',
 })
 export class HistoryTrailsPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+ 
+  constructor( public nativeAudio: NativeAudio, public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HistoryTrailsPage');
-  }
+  startAudio() {
+   this.nativeAudio.preloadComplex('test', '../../assets/audio/Downtown.mp3', 1, 1, 0);
+   
+   this.nativeAudio.play('test'); 
+   
+   };
+
+  stopAudio() {
+    this.nativeAudio.stop('test');
+   
+  };
 
 }
