@@ -24,6 +24,8 @@ import {DatabaseAccessService} from "../services/data-entry/data-access.service"
 import {ToastService} from "../services/toast/toast.service";
 import {Camera} from "@ionic-native/camera";
 import {FormUploadComponent} from "../components/form-upload/form-upload";
+import { NativeAudio } from '@ionic-native/native-audio';
+
 
 @NgModule({
   declarations: [
@@ -66,6 +68,7 @@ import {FormUploadComponent} from "../components/form-upload/form-upload";
     DatabaseAccessService,
     ToastService,
     Camera,
+    NativeAudio
 ]
 
 })
