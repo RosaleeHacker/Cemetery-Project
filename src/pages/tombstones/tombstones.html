@@ -17,18 +17,17 @@
 <ion-list text-wrap>
 
   <ion-item *ngFor="let tombstone of tombstoneList$ | async">
-    <h2>Tombstone Name:</h2>
+    <h2><strong>Tombstone Name:</strong></h2>
     <ion-list-header>{{tombstone.name}}<br>{{tombstone.born}}-{{tombstone.died}}</ion-list-header>
-    <h2>Tombstone Description:</h2>
+    <h2><strong>Tombstone Description:</strong></h2>
     <ion-item>
       {{tombstone.description}}
     </ion-item>
-    <h2>Wars Participated In:</h2>
+    <h2><strong>Wars Participated In:</strong></h2>
     <ion-item>
       {{tombstone.warParticipated}}
     </ion-item>
     <br>
   </ion-item>
-
 </ion-list>
 </ion-content>
