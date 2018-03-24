@@ -27,7 +27,7 @@
   </ion-item>
 
   <ion-item>
-   <form-upload></form-upload>
+   <form-upload-vegetation></form-upload-vegetation>
   </ion-item>
 
   <button ion-button block (click)="addVegetation(vegetation)">Add Vegetation</button>
@@ -68,6 +68,10 @@
   <ion-item>
     <ion-label floating>Longitude</ion-label>
     <ion-input type="text" [(ngModel)]="tombstone.longitude"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <form-upload-tombstone></form-upload-tombstone>
   </ion-item>
 
   <button ion-button block (click)="addTombstone(tombstone)">Add Tombstone</button>

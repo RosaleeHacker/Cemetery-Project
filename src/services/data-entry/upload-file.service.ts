@@ -8,11 +8,9 @@ export class UploadFileService {
   constructor(private db: AngularFireDatabase) {
   }
 
-  private basePath = '/vegetation';
-
-  pushFileToStorage(fileUpload: FileUpload, progress: { percentage: number }) {
+  pushFileToStorage(fileUpload: FileUpload, progress: { percentage: number }, basePath: String) {
     const storageRef = firebase.storage().ref();
-    const uploadTask = storageRef.child(`${this.basePath}/${fileUpload.file.name}`).put(fileUpload.file);
+    const uploadTask = storageRef.child(`${basePath}/${fileUpload.file.name}`).put(fileUpload.file);
 
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) => {
@@ -25,11 +23,11 @@ export class UploadFileService {
       () => {
         fileUpload.url = uploadTask.snapshot.downloadURL;
         fileUpload.name = fileUpload.file.name;
-        this.saveFileData(fileUpload);
+        this.saveFileData(fileUpload, basePath);
       });
   }
 
-  private saveFileData(fileUpload: FileUpload) {
-    this.db.list(`${this.basePath}/`).push(fileUpload);
+  private saveFileData(fileUpload: FileUpload, basePath: String) {
+    this.db.list(`${basePath}/`).push(fileUpload);
   }
 }

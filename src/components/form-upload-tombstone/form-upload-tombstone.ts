@@ -1,19 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
 import {FileUpload} from "../../models/fileUpload/FileUpload";
 import {UploadFileService} from "../../services/data-entry/upload-file.service";
 
 /**
- * Generated class for the FormUploadComponent component.
+ * Generated class for the FormUploadTombstoneComponent component.
  *
  * See https://angular.io/api/core/Component for more info on Angular
  * Components.
  */
 @Component({
-  selector: 'form-upload',
-  templateUrl: 'form-upload.html',
+  selector: 'form-upload-tombstone',
+  templateUrl: 'form-upload-tombstone.html',
   providers: [UploadFileService]
 })
-export class FormUploadComponent implements OnInit{
+export class FormUploadTombstoneComponent {
 
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
@@ -31,7 +31,7 @@ export class FormUploadComponent implements OnInit{
   upload(){
     const file = this.selectedFiles.item(0)
     this.currentFileUpload = new FileUpload(file);
-    this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
+    this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress, '/tombstone');
   }
 
 }

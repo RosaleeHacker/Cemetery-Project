@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
-import { FormUploadComponent } from './form-upload/form-upload';
+import { FormUploadVegetationComponent } from './form-upload-vegetation/form-upload-vegetation';
+import { FormUploadTombstoneComponent } from './form-upload-tombstone/form-upload-tombstone';
 @NgModule({
-	declarations: [FormUploadComponent],
+	declarations: [FormUploadVegetationComponent,
+    FormUploadTombstoneComponent],
 	imports: [],
-	exports: [FormUploadComponent]
+	exports: [FormUploadVegetationComponent,
+    FormUploadTombstoneComponent]
 })
 export class ComponentsModule {}

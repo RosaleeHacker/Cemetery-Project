@@ -23,8 +23,9 @@ import {FIREBASE_CREDENTIALS} from './firebase.credentials';
 import {DatabaseAccessService} from "../services/data-entry/data-access.service";
 import {ToastService} from "../services/toast/toast.service";
 import {Camera} from "@ionic-native/camera";
-import {FormUploadComponent} from "../components/form-upload/form-upload";
+import {FormUploadVegetationComponent} from "../components/form-upload-vegetation/form-upload-vegetation";
 import { NativeAudio } from '@ionic-native/native-audio';
+import {FormUploadTombstoneComponent} from "../components/form-upload-tombstone/form-upload-tombstone";
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { NativeAudio } from '@ionic-native/native-audio';
     AboutPage,
     TombstonesPage,
     HistoryTrailsPage,
-    FormUploadComponent
+    FormUploadVegetationComponent,
+    FormUploadTombstoneComponent
   ],
   imports: [
     BrowserModule,
