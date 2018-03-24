@@ -76,4 +76,19 @@
 
   <button ion-button block (click)="addTombstone(tombstone)">Add Tombstone</button>
 
+  <ion-item-divider></ion-item-divider>
+
+  <h1 class="title">Add New Timeline Item</h1>
+  <ion-item>
+    <ion-label floating>Timeline Name</ion-label>
+    <ion-input type="text" [(ngModel)]="timeline.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Timeline Description</ion-label>
+    <ion-textarea [(ngModel)]="timeline.description"></ion-textarea>
+  </ion-item>
+
+  <button ion-button block (click)="addTimeline(timeline)">Add Timeline Item</button>
+
 </ion-content>

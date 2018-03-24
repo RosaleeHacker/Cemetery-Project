@@ -4,6 +4,7 @@ import {Vegetation} from "../../models/vegetation/vegetation.interface";
 import {DatabaseAccessService} from "../../services/data-entry/data-access.service";
 import {ToastService} from "../../services/toast/toast.service";
 import {Tombstone} from "../../models/tombstone/tombstone.interface";
+import {Timeline} from "../../models/timeline/timeline.interface";
 
 /**
  * Generated class for the DataEntryPage page.
@@ -20,6 +21,7 @@ export class DataEntryPage {
 
   vegetation = {} as Vegetation;
   tombstone = {} as Tombstone;
+  timeline = {} as Timeline;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private dataEntryService: DatabaseAccessService,
               private toastService: ToastService) {
@@ -63,4 +65,20 @@ export class DataEntryPage {
     this.tombstone.warParticipated = "";
   }
 
+  addTimeline(timeline: Timeline) {
+    try {
+      let name = timeline.name;
+      this.dataEntryService.addTimelineData(timeline).then(ref => {
+
+        this.toastService.show(`${name} successfully saved!`);
+        console.log(ref.key);
+      })
+    }
+    catch (e) {
+      console.log(e);
+    }
+
+    this.timeline.name = "";
+    this.timeline.description = "";
+  }
 }

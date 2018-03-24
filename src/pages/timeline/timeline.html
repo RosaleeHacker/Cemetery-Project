@@ -8,30 +8,11 @@
 
 <ion-content>
   <ion-list text-wrap>
-    <ion-item>
-        <ion-list-header>American Revolution</ion-list-header>
-        <p class="thumbnail-text">
-             The United States came into its very existence through a war. This was the American Revolution, fought between the American colonies and Great Britain from 1775-1783. The American colonies began a revolution which turned into a war because they felt their rights as Englishmen were being violated. George Washington became famous in this war as the leader of the Continental Army. The war ended in 1783 with the Treaty of Paris, and the United States of America was on its way to becoming a dominant power in the Western Hemisphere.
-        </p>
+    <ion-item *ngFor="let timeline of timelineList$ | async">
+      <ion-list-header>{{timeline.name}}</ion-list-header>
+      <p class="thumbnail-text">
+        {{timeline.description}}
+      </p>
     </ion-item>
-      
-    <ion-item>
-       <ion-list-header>War of 1812</ion-list-header>
-        <p class="thumbnail-text">
-            In 1812, war again broke out between the U.S. and Great Britain. The War of 1812 lasted from 1812-1815. It was fought because the British Royal Navy was kidnapping American sailors and forcing them to fight for Britain, a practice called impressment.During the war, the British burned down the White House. Another key moment was the penning of the 'Star-Spangled Banner' by Francis Scott Key. The results of the War of 1812 were at best a draw, but they did ensure the British would leave the U.S. alone. For this reason, it is sometimes called the Second War of Independence. 
-        </p>
-    </ion-item>
-    <ion-item>
-        <ion-list-header>Civil War</ion-list-header>
-          <p class="thumbnail-text">
-            The American Civil War took place from 1861-1865, when the Southern states decided to secede from the United States. The Southern, or Confederate Army, wore gray uniforms, while the North, or the Union, wore blue. Famous generals like Robert E. Lee and Ulysses S. Grant battled one another throughout the South and Mid-Atlantic region. The issue of slavery was a major cause, as Northern efforts to abolish slavery angered the South. As president, Abraham Lincoln was a key figure in the Civil War. The Union won the war, preserving the United States as we know it.
-          </p>
-    </ion-item>
-    <ion-item>
-        <ion-list-header>WWI</ion-list-header>
-          <p class="thumbnail-text">
-          	World War I broke out in 1914 and lasted until 1918, although the U.S. did not enter until 1917. The U.S. fought alongside the Allied Powers of France, Great Britain, and Russia against the Central Powers of Germany, Austria-Hungary, and the Ottoman Empire. There was considerable debate among Americans whether they should involve themselves in a European war, but ongoing German U-boat attacks against American ships ultimately led to American involvement. The Allied Powers won the war, which ended with the Treaty of Versailles.
-          </p>
-    </ion-item>    
 </ion-list>
 </ion-content>
