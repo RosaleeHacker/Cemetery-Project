@@ -26,11 +26,13 @@ import {Camera} from "@ionic-native/camera";
 import {FormUploadVegetationComponent} from "../components/form-upload-vegetation/form-upload-vegetation";
 import { NativeAudio } from '@ionic-native/native-audio';
 import {FormUploadTombstoneComponent} from "../components/form-upload-tombstone/form-upload-tombstone";
+import {DetailsPage} from "../pages/details/details";
 
 
 @NgModule({
   declarations: [
     MyApp,
+    DetailsPage,
     BlogPage,
     TimelinePage,
     HomePage,
@@ -52,6 +54,7 @@ import {FormUploadTombstoneComponent} from "../components/form-upload-tombstone/
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    DetailsPage,
     BlogPage,
     TimelinePage,
     HomePage,

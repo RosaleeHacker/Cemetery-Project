@@ -4,6 +4,7 @@ import {Geolocation} from '@ionic-native/geolocation';
 import {DatabaseAccessService} from "../../services/data-entry/data-access.service";
 import {Vegetation} from "../../models/vegetation/vegetation.interface";
 import {Observable} from "rxjs/Observable";
+import {DetailsPage} from "../details/details";
 
 declare var google;
 var map;
@@ -16,8 +17,10 @@ export class HomePage {
 
   @ViewChild('map') mapElement: ElementRef;
   map: any;
+  infoWindows: any;
 
   constructor(public navCtrl: NavController, public geolocation: Geolocation, public dataService: DatabaseAccessService) {
+    this.infoWindows = [];
   }
 
   ionViewDidLoad() {
@@ -147,18 +150,19 @@ export class HomePage {
 
     vegetationList$.subscribe(vegetation => {
       vegetation.forEach(bush => {
-        this.createMarker(bush.name, bush.description, bush.lat, bush.long);
+        this.createMarker(bush);
       })
     });
   }
 
-  createMarker(name, description, lat, long){
+  createMarker(bush){
     //2nd vegetation
     var markerContent = '<div id="content">' +
       '<div id="siteNotice">' +
       '</div>' +
-      '<h1 id="firstHeading" class="firstHeading">' + name + '</h1>' +
+      '<h1 id="firstHeading" class="firstHeading">' + bush.name + '</h1>' +
       '<div id="bodyContent">' +
+      '<p id="tap">See more...</p>' +
       '</div>' +
       '</div>';
 
@@ -167,15 +171,24 @@ export class HomePage {
     });
 
     var marker = new google.maps.Marker({
-      position: {lat: lat, lng: long},
+      position: {lat: bush.lat, lng: bush.long},
       map: map,
-      title: name,
+      title: bush.name,
       icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
     });
 
     marker.addListener('click', function () {
       infowindow.open(map, marker);
     });
-  }
 
+    this.infoWindows.push(infowindow);
+
+    google.maps.event.addListenerOnce(infowindow, 'domready', () => {
+      document.getElementById('tap').addEventListener('click', () => {
+        console.log("Bush being passed: " + bush);
+        infowindow.close();
+        this.navCtrl.push(DetailsPage, {bush: bush});
+      });
+    });
+  }
 }
