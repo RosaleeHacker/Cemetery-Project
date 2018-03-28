@@ -5,6 +5,8 @@ import {DatabaseAccessService} from "../../services/data-entry/data-access.servi
 import {Vegetation} from "../../models/vegetation/vegetation.interface";
 import {Observable} from "rxjs/Observable";
 import {DetailsPage} from "../details/details";
+import {Tombstone} from "../../models/tombstone/tombstone.interface";
+import {TombstoneDetailsPage} from "../tombstone-details/tombstone-details";
 
 declare var google;
 var map;
@@ -26,6 +28,7 @@ export class HomePage {
   ionViewDidLoad() {
     this.initMap();
     this.loadVegetationMarkers();
+    this.loadTombstoneMarkers();
   }
 
   initMap() {
@@ -34,107 +37,24 @@ export class HomePage {
       center: new google.maps.LatLng(43.129417, -77.639181),
       mapTypeId: 'roadmap'
     });
+  }
 
-    //first grave
-    var contentString1 = '<div id="content">' +
-      '<div id="siteNotice">' +
-      '</div>' +
-      '<h1 id="firstHeading" class="firstHeading">John Doe</h1>' +
-      '<div id="bodyContent">' +
-      '<p>1/23/1863-4/09/1930</p>' +
-      '<p>World War I</p>' +
-      '</div>' +
-      '</div>';
+  loadTombstoneMarkers() {
+    let tombstoneList$: Observable<Tombstone[]>;
+    tombstoneList$ = this.dataService.getTombstoneData().snapshotChanges().map(
+      changes => {
+        return changes.map(c => ({
+          key: c.payload.key,
+          ...c.payload.val(),
+        }))
+      }
+    );
 
-    var infowindow1 = new google.maps.InfoWindow({
-      content: contentString1
+    tombstoneList$.subscribe(tombstone => {
+      tombstone.forEach(person => {
+        this.createMarker(person, 'tombstone');
+      })
     });
-
-    var marker1 = new google.maps.Marker({
-      position: {lat: 43.129313, lng: -77.639573},
-      map: map,
-      title: 'Hello World!',
-    });
-
-    marker1.addListener('click', function () {
-      infowindow1.open(map, marker1);
-    });
-
-    //second grave
-    var contentString2 = '<div id="content">' +
-      '<div id="siteNotice">' +
-      '</div>' +
-      '<h1 id="firstHeading" class="firstHeading">James Doe</h1>' +
-      '<div id="bodyContent">' +
-      '<p>4/22/1893-6/13/1954</p>' +
-      '<p>World War II</p>' +
-      '</div>' +
-      '</div>';
-
-    var infowindow2 = new google.maps.InfoWindow({
-      content: contentString2
-    });
-
-    var marker2 = new google.maps.Marker({
-      position: {lat: 43.129569, lng: -77.639436},
-      map: map,
-      title: 'Hello World!'
-    });
-
-    marker2.addListener('click', function () {
-      infowindow2.open(map, marker2);
-    });
-
-    //third grave
-    var contentString3 = '<div id="content">' +
-      '<div id="siteNotice">' +
-      '</div>' +
-      '<h1 id="firstHeading" class="firstHeading">Johnny Doe</h1>' +
-      '<div id="bodyContent">' +
-      '<p>3/13/1879-11/28/1925</p>' +
-      '<p>World War I</p>' +
-      '</div>' +
-      '</div>';
-
-    var infowindow3 = new google.maps.InfoWindow({
-      content: contentString3
-    });
-
-    var marker3 = new google.maps.Marker({
-      position: {lat: 43.129545, lng: -77.639168},
-      map: map,
-      title: 'Hello World!'
-    });
-
-    marker3.addListener('click', function () {
-      infowindow3.open(map, marker3);
-    });
-
-    //forth grave
-    var contentString4 = '<div id="content">' +
-      '<div id="siteNotice">' +
-      '</div>' +
-      '<h1 id="firstHeading" class="firstHeading">Jane Doe</h1>' +
-      '<div id="bodyContent">' +
-      '<p>12/04/1821-3/17/1865</p>' +
-      '<p>Civil War</p>' +
-      '</div>' +
-      '</div>';
-
-    var infowindow4 = new google.maps.InfoWindow({
-      content: contentString4
-    });
-
-    var marker4 = new google.maps.Marker({
-      position: {lat: 43.129388, lng: -77.638878},
-      map: map,
-      title: 'Hello World!'
-    });
-
-    marker4.addListener('click', function () {
-      infowindow4.open(map, marker4);
-    });
-
   }
 
   loadVegetationMarkers() {
@@ -150,17 +70,19 @@ export class HomePage {
 
     vegetationList$.subscribe(vegetation => {
       vegetation.forEach(bush => {
-        this.createMarker(bush);
+        this.createMarker(bush, 'vegetation');
       })
     });
   }
 
-  createMarker(bush){
+  createMarker(object, objectType) {
+    let markerIcon = '';
+
     //2nd vegetation
     var markerContent = '<div id="content">' +
       '<div id="siteNotice">' +
       '</div>' +
-      '<h1 id="firstHeading" class="firstHeading">' + bush.name + '</h1>' +
+      '<h1 id="firstHeading" class="firstHeading">' + object.name + '</h1>' +
       '<div id="bodyContent">' +
       '<p id="tap">See more...</p>' +
       '</div>' +
@@ -170,11 +92,21 @@ export class HomePage {
       content: markerContent
     });
 
+    if (objectType === 'tombstone') {
+      markerIcon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+    }
+    else if (objectType === 'vegetation') {
+      markerIcon = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+    }
+    else {
+      markerIcon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+    }
+
     var marker = new google.maps.Marker({
-      position: {lat: bush.lat, lng: bush.long},
+      position: {lat: object.lat, lng: object.long},
       map: map,
-      title: bush.name,
-      icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+      title: object.name,
+      icon: markerIcon
     });
 
     marker.addListener('click', function () {
@@ -185,9 +117,13 @@ export class HomePage {
 
     google.maps.event.addListenerOnce(infowindow, 'domready', () => {
       document.getElementById('tap').addEventListener('click', () => {
-        console.log("Bush being passed: " + bush);
+        console.log("Bush being passed: " + object);
         infowindow.close();
-        this.navCtrl.push(DetailsPage, {bush: bush});
+        if (objectType === 'tombstone') {
+          this.navCtrl.push(TombstoneDetailsPage, {tombstone: object});
+        } else {
+          this.navCtrl.push(DetailsPage, {bush: object});
+        }
       });
     });
   }

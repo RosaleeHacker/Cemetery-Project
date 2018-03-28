@@ -27,12 +27,14 @@ import {FormUploadVegetationComponent} from "../components/form-upload-vegetatio
 import { NativeAudio } from '@ionic-native/native-audio';
 import {FormUploadTombstoneComponent} from "../components/form-upload-tombstone/form-upload-tombstone";
 import {DetailsPage} from "../pages/details/details";
+import {TombstoneDetailsPage} from "../pages/tombstone-details/tombstone-details";
 
 
 @NgModule({
   declarations: [
     MyApp,
     DetailsPage,
+    TombstoneDetailsPage,
     BlogPage,
     TimelinePage,
     HomePage,
@@ -55,6 +57,7 @@ import {DetailsPage} from "../pages/details/details";
   entryComponents: [
     MyApp,
     DetailsPage,
+    TombstoneDetailsPage,
     BlogPage,
     TimelinePage,
     HomePage,

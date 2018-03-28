@@ -4,6 +4,7 @@ export interface Tombstone {
   died: Date;
   description: string;
   warParticipated: string;
-  latitude: string;
-  longitude: string;
+  lat: number;
+  long: number;
+  url: string;
 }

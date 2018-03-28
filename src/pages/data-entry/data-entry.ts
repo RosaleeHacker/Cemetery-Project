@@ -60,8 +60,6 @@ export class DataEntryPage {
 
     this.tombstone.name = "";
     this.tombstone.description = "";
-    this.tombstone.latitude = "";
-    this.tombstone.longitude = "";
     this.tombstone.warParticipated = "";
   }
 
