@@ -16,20 +16,22 @@ import { NativeAudio } from '@ionic-native/native-audio';
   templateUrl: 'history-trails.html',
 })
 export class HistoryTrailsPage {
- 
+
+  disableBtn: boolean;
+
   constructor( public nativeAudio: NativeAudio, public navCtrl: NavController, public navParams: NavParams) {
   }
-
+  
   startAudio() {
    this.nativeAudio.preloadComplex('test', '../../assets/audio/Downtown.mp3', 1, 1, 0);
-   
-   this.nativeAudio.play('test'); 
-   
+   this.nativeAudio.play('test');
+   this.disableBtn= true;    
    };
 
   stopAudio() {
     this.nativeAudio.stop('test');
-   
+    this.disableBtn= false;    
+
   };
 
 }
