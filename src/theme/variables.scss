@@ -72,36 +72,25 @@ $colors: (
 
 @import "ionic.theme.default";
 
-.item-ios p{
+*{
     color: black !important;
 }
 
-.item-android p{
-    color: black !important;
+
+.tabs-md .tab-button[aria-selected=true] .tab-button-icon {
+    color: rgb(72, 138, 255) !important;
 }
 
-p{
-    color: black !important;
+.tabs-ios .tab-button[aria-selected=true] .tab-button-icon {
+    color: #488aff !important;
 }
 
-ion-label{
-    color: black !important;
+.tabs-md .tab-button[aria-selected=true] .tab-button-text{
+    color: rgb(72, 138, 255) !important;
 }
 
-.tabs-ios .tab-button-icon{
-    color: black !important;
-}
-
-.tabs-md .tab-button-icon {
-     color: black !important;
-}
-
-.tabs-md .tab-button-text {
-     color: black !important;
-}
-
-.tab-button-text, .tab-button-icon {
-     color: black !important;
+.tabs-ios .tab-button[aria-selected=true] .tab-button-text{
+    color: rgb(72, 138, 255) !important;
 }
 
 
