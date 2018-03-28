@@ -71,6 +71,9 @@ $colors: (
 // default are overridden.
 
 @import "ionic.theme.default";
+.item-ios p{
+    color: black !important;
+}
 
 
 // Ionicons
