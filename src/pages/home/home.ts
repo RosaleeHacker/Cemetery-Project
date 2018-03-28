@@ -23,12 +23,13 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public geolocation: Geolocation, public dataService: DatabaseAccessService) {
     this.infoWindows = [];
+
+    this.loadVegetationMarkers();
+    this.loadTombstoneMarkers();
   }
 
   ionViewDidLoad() {
     this.initMap();
-    this.loadVegetationMarkers();
-    this.loadTombstoneMarkers();
   }
 
   initMap() {
@@ -109,7 +110,12 @@ export class HomePage {
       icon: markerIcon
     });
 
+    var allWindows = this.infoWindows;
+
     marker.addListener('click', function () {
+      for (let i = 0; i < allWindows.length; i++) {
+        allWindows[i].close();
+      }
       infowindow.open(map, marker);
     });
 
@@ -117,8 +123,7 @@ export class HomePage {
 
     google.maps.event.addListenerOnce(infowindow, 'domready', () => {
       document.getElementById('tap').addEventListener('click', () => {
-        console.log("Bush being passed: " + object);
-        infowindow.close();
+
         if (objectType === 'tombstone') {
           this.navCtrl.push(TombstoneDetailsPage, {tombstone: object});
         } else {
