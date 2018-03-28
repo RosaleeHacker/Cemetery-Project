@@ -17,14 +17,12 @@
 
 <ion-content>
 
-  <ion-list text-wrap>
-
-   <button ion-button full (click)="startAudio()" [disabled]="disableBtn" >Start Audio</button>
-  <button ion-button full (click)="stopAudio()" color="danger">Stop Audio</button>
-  <br>
-    
+  <ion-list text-wrap>    
     <ion-item *ngFor="let vegetation of vegetationList$ | async">
-      <ion-list-header>{{vegetation.name}}</ion-list-header>
+      <ion-list-header>{{vegetation.name}} 
+        <button ion-button (click)="startAudio()" [disabled]="disableBtn" >Start Audio</button>
+        <button ion-button (click)="stopAudio()" color="danger">Stop Audio</button></ion-list-header>
+      </ion-list-header>
       <img class="thumbnail-images" src = {{vegetation.url}}>
       <p class="thumbnail-text">
         {{vegetation.description}}
