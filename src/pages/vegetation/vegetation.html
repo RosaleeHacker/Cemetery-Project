@@ -19,6 +19,10 @@
 
   <ion-list text-wrap>
 
+   <button ion-button full (click)="startAudio()" [disabled]="disableBtn" >Start Audio</button>
+  <button ion-button full (click)="stopAudio()" color="danger">Stop Audio</button>
+  <br>
+    
     <ion-item *ngFor="let vegetation of vegetationList$ | async">
       <ion-list-header>{{vegetation.name}}</ion-list-header>
       <img class="thumbnail-images" src = {{vegetation.url}}>
