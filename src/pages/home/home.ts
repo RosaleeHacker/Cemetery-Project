@@ -36,7 +36,7 @@ export class HomePage {
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 19,
       center: new google.maps.LatLng(43.129417, -77.639181),
-      mapTypeId: 'roadmap'
+      mapTypeId: 'satellite'
     });
   }
 
