@@ -72,6 +72,31 @@ $colors: (
 
 @import "ionic.theme.default";
 
+*{
+    color: black !important;
+}
+
+
+.tabs-md .tab-button[aria-selected=true] .tab-button-icon {
+    color: rgb(72, 138, 255) !important;
+}
+
+.tabs-ios .tab-button[aria-selected=true] .tab-button-icon {
+    color: #488aff !important;
+}
+
+.tabs-md .tab-button[aria-selected=true] .tab-button-text{
+    color: rgb(72, 138, 255) !important;
+}
+
+.tabs-ios .tab-button[aria-selected=true] .tab-button-text{
+    color: rgb(72, 138, 255) !important;
+}
+
+.button-inner {
+    color: white !important;
+}
+
 
 // Ionicons
 // --------------------------------------------------

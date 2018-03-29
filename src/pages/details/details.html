@@ -12,9 +12,16 @@
 
 </ion-header>
 
-
 <ion-content padding>
-  <ion-title>{{vegetation.name}}</ion-title>
+  <ion-title>{{vegetation.name}} </ion-title>
+  <ion-row>
+    <ion-col width-50 style="text-align: right">
+        <button ion-button (click)="startAudio()" [disabled]="disableBtn">Start Audio</button>    
+    </ion-col>
+    <ion-col width-50 style="text-align: left">
+       <button ion-button (click)="stopAudio()" color="danger">Stop Audio</button>
+    </ion-col>
+  </ion-row>
   <ion-list text-wrap>
     <ion-item >
       <img class="thumbnail-images" src = {{vegetation.url}}>
